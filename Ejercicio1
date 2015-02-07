@@ -1,3 +1,5 @@
+EJERCICIOS A REALIZAR
+
 a. Crear la tabla pelicula con los siguientes campos
 1. id_pelicula integer, primary key
 2. titulo varchar2(180)
