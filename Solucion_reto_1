@@ -1,9 +1,12 @@
+Ganadores Eduardo, alonso y ricardo. 1 punto sobre el parcial  :D
+
+
 create table pelicula (id_pelicula integer, titulo varchar2(180),
 sinopsis varchar2(400), constraint pk_id_pelicula primary key (id_pelicula));
 
 create sequence secuencia_pelicula
 start with 1
-increment by 1
+increment by 1  
 nomaxvalue;
 
 
