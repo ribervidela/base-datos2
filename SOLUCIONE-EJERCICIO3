@@ -26,3 +26,35 @@ end loop;
 dbms_output.put_line('nombre '||nombre_actual ||'suma total:'||total_actual);
 end;
 /
+
+/*
+SOLUCION CON UNION DE TABLAS USANDO LA PALABRA RESERVADA TYPE
+*/
+
+SET SERVEROUTPUT ON;
+DECLARE
+  suma_sueldo NUMBER;
+  nombre_empleado EMPLEADO_VENTAS.NOMBRE_CLIENTE%TYPE;
+  CURSOR CURSOR_VENDEDOR
+  IS
+    SELECT EMPLEADO_VENTAS.ID_CLIENTE,
+      EMPLEADO_VENTAS.NOMBRE_CLIENTE,
+      SUCURSAL.NOMBRE,
+      SUCURSAL.VENTA
+    FROM EMPLEADO_VENTAS
+    JOIN SUCURSAL
+    ON EMPLEADO_VENTAS.ID_CLIENTE=SUCURSAL.ID_CLIENTE;
+BEGIN
+  FOR REC IN CURSOR_VENDEDOR
+  LOOP
+    IF rec.nombre_cliente = nombre_empleado THEN
+      suma_sueldo        :=REC.VENTA + suma_sueldo;
+    ELSE
+      DBMS_OUTPUT.PUT_LINE(nombre_empleado||' : '||suma_sueldo);
+      suma_sueldo :=REC.VENTA;
+      nombre_empleado:=REC.nombre_cliente;
+    END IF;
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE(nombre_empleado||' : '||suma_sueldo);
+END;
+/
