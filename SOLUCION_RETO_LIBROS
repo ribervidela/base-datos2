@@ -9,8 +9,12 @@ CREATE TABLE libros
     num_pag           NUMBER,
     CONSTRAINT pk_book_id PRIMARY KEY (book_id)
   );
+  
 SET serveroutput ON;
+
 CREATE sequence sec_libros start with 1 increment BY 1 nomaxvalue;
+
+
 CREATE OR REPLACE PROCEDURE guardarlibros
   (
     my_id OUT INTEGER,
@@ -41,10 +45,16 @@ BEGIN
     );
 END;
 /
+
+
+
+
 DECLARE
   valor_id INTEGER;
 BEGIN
   guardarlibros(valor_id, '1234','Abrupt climate change', 'Trata de que todos vamos a morir por contaminadores','John Wallace',27,'jan',2010,455);
 END;
 /
+
+
 SELECT * FROM libros;
